@@ -4,6 +4,7 @@ import requests
 import time
 import sqlite3
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 import pandas as pd
 
@@ -19,7 +20,7 @@ def find_table_by_name(tables : list, name : str) -> int:
     return index - 1 
 
 def create_sql_database(data_frame : pd.DataFrame):
-    connection = sqlite3.connect(s"New_Database.db")
+    connection = sqlite3.connect("New_Database.db")
     cursor = connection.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS revenue (Date, Revenue)""")
     connection.commit()
@@ -61,6 +62,26 @@ def custom_web_scraping(url : str) -> None:
 
     
 
+def plot_test():
+    x = np.linspace(0, 10, 100)  # 100 points between 0 and 10
+    y = np.random.randn(100)      # 100 random values from a normal distribution
+
+    plt.ion()
+    # Create the plot
+    plt.figure(figsize=(10, 6))
+    plt.plot(x, y, marker='o', linestyle='-', color='b')  # 'o' for markers, '-' for line, 'b' for blue color
+
+    # Add titles and labels
+    plt.title('Random Line Graph')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+
+    # Show the plot
+    plt.grid(True)
+    plt.show()
+
 custom_web_scraping(url)
+#Plot not showing(?) - WIP
+plot_test()
 
 
